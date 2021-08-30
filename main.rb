@@ -67,6 +67,21 @@ class LinkedList
     end
 
     def contains?(value)
+        if @head
+            current_node = @head
+            while current_node.next != nil
+                break if current_node.data == value
+                current_node = current_node.next
+            end
+            
+            if current_node.data != value && current_node.next == nil
+                return false
+            else
+                return true
+            end
+        else
+            puts "This list is empty."
+        end 
     end
 
     def finds(value)
@@ -129,3 +144,4 @@ my_list.append(0)
 my_list.to_s
 my_list.size
 puts my_list.finds(4)
+puts my_list.contains?(0)
