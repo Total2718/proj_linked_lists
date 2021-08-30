@@ -20,7 +20,7 @@ class LinkedList
     end
     
     def prepend(value)
-        
+
     end
 
     def size
@@ -37,9 +37,10 @@ class LinkedList
 
         else
             puts "This list is empty."
-
+            counter = 0
             
         end
+        counter
     end
 
     def show_head
@@ -69,6 +70,25 @@ class LinkedList
     end
 
     def finds(value)
+        if @head
+            current_node = @head
+            index = 0 
+            while current_node.next != nil
+                break if current_node.data == value
+                index += 1
+                current_node = current_node.next
+            end
+            
+            if current_node.data != value && current_node.next == nil
+                return nil
+            else
+                return index
+            end
+        else
+            puts "This list is empty."
+        end 
+
+
     end
 
     def to_s
@@ -108,3 +128,4 @@ my_list.append(1)
 my_list.append(0)
 my_list.to_s
 my_list.size
+puts my_list.finds(4)
