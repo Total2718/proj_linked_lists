@@ -61,6 +61,24 @@ class LinkedList
     end
 
     def at(index)
+
+        if @head
+            current_node = @head
+            counter = 0
+            while current_node.next != nil
+                break if counter == index
+                counter += 1
+                current_node = current_node.next
+            end
+            if counter == index
+                current_node.data
+            else
+                 "The index given doesn't exist."
+            end
+        else
+             "This list is empty."
+        end 
+
     end
 
     def pop
@@ -80,7 +98,7 @@ class LinkedList
                 return true
             end
         else
-            puts "This list is empty."
+             "This list is empty."
         end 
     end
 
@@ -100,7 +118,7 @@ class LinkedList
                 return index
             end
         else
-            puts "This list is empty."
+         "This list is empty."
         end 
 
 
@@ -145,3 +163,4 @@ my_list.to_s
 my_list.size
 puts my_list.finds(4)
 puts my_list.contains?(0)
+puts my_list.at(6)
