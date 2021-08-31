@@ -198,6 +198,30 @@ class LinkedList
         end
     end
 
+    def remove_at(index)
+        if @head
+            length = size 
+            while index < 0
+            index = index + length
+            end
+            if index >= length
+                pop
+            elsif index == 0
+                @head = @head.next
+            else
+                counter = 0 
+                current_node = @head
+                while counter < index - 1
+                    counter += 1
+                    current_node = current_node.next
+                end
+                current_node.next = current_node.next.next
+            end
+        else
+            puts "Empty list"
+        end
+    end
+
 end
 
 class Node
@@ -227,5 +251,7 @@ my_list.at(-50)
 my_list.pop
 my_list.prepend(55)
 my_list.insert_at(55, 0)
+my_list.to_s
+my_list.remove_at(2)
 my_list.to_s
 
