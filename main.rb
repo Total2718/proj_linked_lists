@@ -13,13 +13,21 @@ class LinkedList
                     current_node = current_node.next
                 end
                 current_node.next = Node.new(value)
-                puts @head.data
+                
         else
             @head = Node.new(value)
         end
     end
     
     def prepend(value)
+
+        if @head
+            new_head = Node.new(value)
+            new_head.next = @head
+            @head = new_head
+        else
+            append(value)
+        end
 
     end
 
@@ -82,6 +90,21 @@ class LinkedList
     end
 
     def pop
+        if @head
+            if @head.next
+                current_node = @head
+                while current_node.next.next != nil
+                    current_node = current_node.next
+                end
+
+                current_node.next = nil
+            else
+                @head = nil
+            end
+        else
+            puts "This list is empty, so no elements can be popped."
+        end
+
     end
 
     def contains?(value)
@@ -153,14 +176,18 @@ end
 
 
 my_list = LinkedList.new()
-my_list.append(5)
-my_list.append(4)
-my_list.append(3)
-my_list.append(2)
-my_list.append(1)
-my_list.append(0)
+
+n = 8
+m = 0
+n.times do
+    m += 1
+    my_list.append(m)
+end
 my_list.to_s
 my_list.size
 puts my_list.finds(4)
 puts my_list.contains?(0)
 puts my_list.at(6)
+my_list.pop
+my_list.to_s
+
