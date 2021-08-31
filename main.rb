@@ -149,14 +149,14 @@ class LinkedList
 
     def to_s
         if @head
-            show_head
-            current_node = @head.next
+            
+            current_node = @head
         
             while current_node.next != nil
-                puts current_node.data
+                print " (#{current_node.data}) ->"
                 current_node = current_node.next
             end
-            show_tail
+            puts " (#{current_node.data})"
         else
             puts "This list is empty."
         end
