@@ -40,11 +40,11 @@ class LinkedList
                 current_node = current_node.next
             end
 
-            puts "This list contains #{counter} nodes."
-
+            
+            
 
         else
-            puts "This list is empty."
+            
             counter = 0
             
         end
@@ -71,6 +71,11 @@ class LinkedList
     def at(index)
 
         if @head
+            length = size 
+            while index < 0
+            index = index + length
+            
+            end
             current_node = @head
             counter = 0
             while current_node.next != nil
@@ -79,12 +84,12 @@ class LinkedList
                 current_node = current_node.next
             end
             if counter == index
-                current_node.data
+                puts current_node.data
             else
-                 "The index given doesn't exist."
+                puts "The index given doesn't exist."
             end
         else
-             "This list is empty."
+            puts "This list is empty."
         end 
 
     end
@@ -136,12 +141,12 @@ class LinkedList
             end
             
             if current_node.data != value && current_node.next == nil
-                return nil
+                 nil
             else
-                return index
+                 index
             end
         else
-         "This list is empty."
+         puts "This list is empty."
         end 
 
 
@@ -159,6 +164,37 @@ class LinkedList
             puts " (#{current_node.data})"
         else
             puts "This list is empty."
+        end
+    end
+
+    def insert_at(value, index)
+        if @head
+            length = size 
+            while index < 0
+            index = index + length
+            end
+            if (index) >= length
+                append(value)
+
+            elsif index == 0
+                prepend(value) 
+
+            elsif index < length 
+                counter = 0
+                current_node = @head
+                while counter < index - 1
+                    current_node = current_node.next
+                    counter += 1
+                end
+                new_element = Node.new(value)
+                new_element.next = current_node.next
+                current_node.next = new_element
+
+                
+
+            end
+        else
+            append(value)
         end
     end
 
@@ -185,9 +221,11 @@ n.times do
 end
 my_list.to_s
 my_list.size
-puts my_list.finds(4)
+my_list.finds(4)
 puts my_list.contains?(0)
-puts my_list.at(6)
+my_list.at(-50)
 my_list.pop
+my_list.prepend(55)
+my_list.insert_at(55, 0)
 my_list.to_s
 
